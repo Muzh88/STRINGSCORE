@@ -34,6 +34,9 @@ To change the default pre-processing arguments please modify the values in run_p
 cd src/scripts
 bash run_pre_process.sh
 ```
+By running this might be that some packages are missing: scikit-learn, seaborn, tqdm
+Just install them by hand with ```pip install scikit-learn seaborn tqdm```
+
 ### Running the model
 Each model comes with a seperate bash file. Within each bash file there are sets of options to configure. To see the definition of each option, run the corresponding python file followed by --help. 
 - run_xgboost.sh
