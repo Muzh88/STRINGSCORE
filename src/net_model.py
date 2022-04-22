@@ -13,7 +13,15 @@ import argparse
 import subprocess
 import copy
 from collections import Counter as C
+from itertools import tee
 
+
+def pairwise(iterable):
+    # Chains sequences: 'ABCDEFG' --> AB BC CD DE EF FG
+    a, b = tee(iterable)
+    next(b, None)
+    return list(zip(a, b))
+    
 class BinaryClassification(nn.Module):
     def __init__(self, input_dim=11, hidden_dim=[11], output_dim=1):
         """ A Neural Network which can be adaptively parameterised for tabular data predictions.
@@ -484,7 +492,7 @@ output_size = 1
 to_shuffle = True
 batch_size = args.batch_size
 epochs = args.epochs
-hidden_size = [int(x) for x in args.hidden_size]
+hidden_size = [int(x) for x in args.hidden_size.split(' ')]
 learning_rate = args.learning_rate
 print('Running script with the following args:\n', args)
 print('\n')
